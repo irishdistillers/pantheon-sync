@@ -1,0 +1,19 @@
+name: "Pantheon Rsync"
+description: "This GitHub Action builds your assets"
+author: "irishdistillers"
+inputs:
+  THEME_DIRECTORY:
+    description: "Directory where the them to sync is located."
+    required: true
+  NPM_COMMAND:
+    description: "Command to run by npm (build/dev/...)."
+    required: true
+  REMOTE_REPO_NAME:
+    description: "Remote GIT Repo Name"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
+branding:
+  color: "green"
+  icon: "truck"
