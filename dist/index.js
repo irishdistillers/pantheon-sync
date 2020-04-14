@@ -9696,21 +9696,7 @@ const pantheonDeploy = (() => {
     }
 })();
 
-const validateInputs = (inputs) => {
-    const validInputs = inputs.filter(input => {
-        if (!input) {
-            console.error(`⚠️ ${input} is mandatory`);
-        }
-        return input;
-    });
-
-    if (validInputs.length !== inputs.length) {
-        process.abort();
-    }
-};
-
 const run = () => {
-    validateInputs(THEME_DIRECTORY, NPM_COMMAND, REMOTE_REPO_NAME);
     console.log('Passing parameters to init.');
     pantheonDeploy.init({
         themeDirectory: THEME_DIRECTORY,
