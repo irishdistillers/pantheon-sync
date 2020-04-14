@@ -41,7 +41,7 @@ const pantheonDeploy = (() => {
 
     };
 
-    const setupRsync = ({}) => {
+    const setupRsync = () => {
 
         console.log('Downloading Rsync Plugin.');
         child_process.execSync('mkdir -p $HOME/.terminus/plugins');
