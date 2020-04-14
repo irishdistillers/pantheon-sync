@@ -9663,9 +9663,9 @@ const pantheonDeploy = (() => {
 
         console.log('Building assets.');
         child_process.execSync(`cd $GITHUB_WORKSPACE/${ themeDirectory }`);
+        child_process.execSync('composer install');
         child_process.execSync('npm install');
         child_process.execSync(`npm run ${ npmCommand }`);
-        child_process.execSync('composer install');
         console.log("\n ✅ Assets built.");
 
     };

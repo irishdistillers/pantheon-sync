@@ -4,25 +4,17 @@ This GitHub Action syncs your current issue branch to a remote Pantheon repo, us
 
 Pass configuration with `env` vars
 
-- `PANTHEON_MACHINE_TOKEN` [required]
+- `THEME_DIRECTORY` [required]
 
-Pantheon Machine Token to be used in Terminus
+Directory where the them to sync is located.
 
-- `REMOTE_REPO_URL` [required]
+- `NPM_COMMAND` [required]
 
-Remote GIT Repo URL
+Command to run by npm (build/dev/...).
 
 - `REMOTE_REPO_NAME` [required]
 
 Remote GIT Repo Name
-
-- `PR_STATE` [required]
-
-State of the PR that triggered the action
-
-- `STRICT_BRANCH_NAMES` [optional]
-
-Set to strict to enforce Jira ticket naming for branches (`none` by default)
 
 # Dependencies
 
