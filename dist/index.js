@@ -9651,6 +9651,9 @@ const pantheonSync = (() => {
         pantheonRepoName,
         pullRequest
     }) => {
+        console.log('themeDirectory is ' + themeDirectory);
+        console.log('npmCommand is ' + npmCommand);
+        console.log('pantheonRepoName is ' + pantheonRepoName);
         setupRsync();
         buildAssets(themeDirectory, npmCommand);
         rsyncAssets(themeDirectory, pantheonRepoName, pullRequest);
@@ -9699,6 +9702,7 @@ const pantheonSync = (() => {
 
 const run = () => {
     console.log('Passing parameters to init.');
+    console.log('Core theme is ' + core.getInput('THEME_DIRECTORY'));
     pantheonSync.init({
         themeDirectory: core.getInput('THEME_DIRECTORY'),
         npmCommand: core.getInput('NPM_COMMAND'),
