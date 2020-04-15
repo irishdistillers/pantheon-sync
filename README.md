@@ -27,32 +27,14 @@ This Github actions required that you:
 # Usage
 
 ```
-  - name: Deploy current branch to pantheon
-    uses: irishdistillers/pantheon-deploy@master
-    with:
-      PR_STATE: 'open'
-      PANTHEON_MACHINE_TOKEN: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
-      REMOTE_REPO_URL: 'url'
-      REMOTE_REPO_NAME: 'name'
-      STRICT_BRANCH_NAMES: 'strict'
-```
-
-```
-  - name: Delete/merge corresponding multidev in pantheon
-    uses: irishdistillers/pantheon-deploy@master
-    with:
-      PR_STATE: 'close'
-      PANTHEON_MACHINE_TOKEN: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
-      REMOTE_REPO_NAME: 'name'
+  - name: Rsync assets to Pantheon
+      uses: irishdistillers/pantheon-sync@master
+      with:
+        THEME_DIRECTORY: 'wp-content/themes/global-theme'
+        NPM_COMMAND: 'dev'
+        REMOTE_REPO_NAME: ${{ secrets.PANTHEON_SITE_ID }}
 ```
 
 ## Disclaimer
 
 Use at your own risk.
-
-
-## TODO
-
-- Use `env` instead of `with` in workflow
-- Send comments to PR directly from the action itself
-- npm builds ?

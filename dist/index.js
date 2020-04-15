@@ -9643,7 +9643,7 @@ const {
 } = process.env;
 console.log('GITHUB_WORKSPACE', GITHUB_WORKSPACE);
 
-const pantheonDeploy = (() => {
+const pantheonSync = (() => {
 
     const init = ({
         themeDirectory,
@@ -9698,7 +9698,7 @@ const pantheonDeploy = (() => {
 
 const run = () => {
     console.log('Passing parameters to init.');
-    pantheonDeploy.init({
+    pantheonSync.init({
         themeDirectory: core.getInput('THEME_DIRECTORY'),
         npmCommand: core.getInput('NPM_COMMAND'),
         pantheonRepoName: core.getInput('REMOTE_REPO_NAME'),

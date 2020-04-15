@@ -1,7 +1,7 @@
 {
   "name": "pantheon-sync",
   "version": "0.0.1",
-  "description": "This GitHub Action deploys your current issue branch to a remote Pantheon repo.",
+  "description": "This GitHub Action syncs your current issue branch to a remote Pantheon repo, using NodeJS.",
   "main": "src/index.js",
   "dependencies": {
     "@actions/core": "^1.2.0",
