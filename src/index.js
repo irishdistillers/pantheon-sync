@@ -34,7 +34,9 @@ const pantheonSync = (() => {
 
         console.log('Building assets located in theme ' + themeDirectory);
         child_process.execSync('cd $GITHUB_WORKSPACE/' + themeDirectory);
-        child_process.execSync('composer install');
+        console.log('Composer install.');
+        child_process.execSync('sudo composer install');
+        console.log('npm install.');
         child_process.execSync('npm install');
         console.log('Running NPM ' + npmCommand);
         child_process.execSync('npm run ' + npmCommand);
