@@ -32,11 +32,12 @@ const pantheonSync = (() => {
         npmCommand
     }) => {
 
-        console.log('Building assets.');
-        child_process.execSync(`cd $GITHUB_WORKSPACE/${ themeDirectory }`);
+        console.log('Building assets located in theme ' + themeDirectory);
+        child_process.execSync('cd $GITHUB_WORKSPACE/' + themeDirectory);
         child_process.execSync('composer install');
         child_process.execSync('npm install');
-        child_process.execSync(`npm run ${ npmCommand }`);
+        console.log('Running NPM ' + npmCommand);
+        child_process.execSync('npm run ' + npmCommand);
         console.log("\n ✅ Assets built.");
 
     };
@@ -54,7 +55,7 @@ const pantheonSync = (() => {
         try {
 
             console.log('Sending assets via Rsync');
-            await exec.exec('terminus', ['rsync', `$GITHUB_WORKSPACE/${ themeDirectory }`, `${ pantheonRepoName }.${ pullRequest.head.ref }:${ themeDirectory }`]);
+            await exec.exec('terminus', ['rsync', '$GITHUB_WORKSPACE/' + themeDirectory, pantheonRepoName + '.' + pullRequest.head.ref + ':' + themeDirectory]);
             console.log("\n ✅ Assets synced.");
 
         } catch (error) {
