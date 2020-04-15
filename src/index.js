@@ -22,18 +22,15 @@ const pantheonSync = (() => {
         pantheonRepoName,
         pullRequest
     }) => {
-        console.log('themeDirectory is ' + themeDirectory);
-        console.log('npmCommand is ' + npmCommand);
-        console.log('pantheonRepoName is ' + pantheonRepoName);
         setupRsync();
         buildAssets(themeDirectory, npmCommand);
         rsyncAssets(themeDirectory, pantheonRepoName, pullRequest);
     };
     
-    const buildAssets = ({
+    const buildAssets = (
         themeDirectory,
         npmCommand
-    }) => {
+    ) => {
 
         console.log('Building assets located in theme ' + themeDirectory);
         child_process.execSync('cd $GITHUB_WORKSPACE/' + themeDirectory);
