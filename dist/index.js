@@ -9699,9 +9699,9 @@ const pantheonDeploy = (() => {
 const run = () => {
     console.log('Passing parameters to init.');
     pantheonDeploy.init({
-        themeDirectory: THEME_DIRECTORY,
-        npmCommand: NPM_COMMAND,
-        pantheonRepoName: REMOTE_REPO_NAME,
+        themeDirectory: core.getInput('THEME_DIRECTORY'),
+        npmCommand: core.getInput('NPM_COMMAND'),
+        pantheonRepoName: core.getInput('REMOTE_REPO_NAME'),
         pullRequest: github.context.payload.pull_request,
     });
 };
