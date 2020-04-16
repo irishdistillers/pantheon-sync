@@ -7,7 +7,6 @@ const child_process = require('child_process');
 
 const {
     THEME_DIRECTORY,
-    NPM_COMMAND,
     REMOTE_REPO_NAME,
     GITHUB_WORKSPACE,
     HOME
@@ -18,29 +17,11 @@ const pantheonSync = (() => {
 
     const init = ({
         themeDirectory,
-        npmCommand,
         pantheonRepoName,
         pullRequest
     }) => {
         setupRsync();
-        // buildAssets(themeDirectory, npmCommand);
         rsyncAssets(themeDirectory, pantheonRepoName, pullRequest);
-    };
-    
-    const buildAssets = (
-        themeDirectory,
-        npmCommand
-    ) => {
-        console.log('Building assets located in theme ' + themeDirectory);
-        child_process.execSync('cd ' + themeDirectory);
-        console.log('Composer install.');
-        child_process.execSync('sudo composer install');
-        console.log('npm install.');
-        child_process.execSync('cat package-lock.json');
-        child_process.execSync('npm install');
-        console.log('Running NPM ' + npmCommand);
-        child_process.execSync('npm run ' + npmCommand);
-        console.log("\n ✅ Assets built.");
     };
 
     const setupRsync = () => {
@@ -74,7 +55,6 @@ const run = () => {
     console.log('Core theme is ' + core.getInput('THEME_DIRECTORY'));
     pantheonSync.init({
         themeDirectory: core.getInput('THEME_DIRECTORY'),
-        npmCommand: core.getInput('NPM_COMMAND'),
         pantheonRepoName: core.getInput('REMOTE_REPO_NAME'),
         pullRequest: github.context.payload.pull_request,
     });

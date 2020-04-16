@@ -5,9 +5,6 @@ inputs:
   THEME_DIRECTORY:
     description: "Directory where the them to sync is located."
     required: true
-  NPM_COMMAND:
-    description: "Command to run by npm (build/dev/...)."
-    required: true
   REMOTE_REPO_NAME:
     description: "Remote GIT Repo Name"
     required: true
