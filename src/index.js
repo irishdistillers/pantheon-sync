@@ -23,7 +23,7 @@ const pantheonSync = (() => {
         pullRequest
     }) => {
         setupRsync();
-        buildAssets(themeDirectory, npmCommand);
+        // buildAssets(themeDirectory, npmCommand);
         rsyncAssets(themeDirectory, pantheonRepoName, pullRequest);
     };
     
@@ -32,19 +32,8 @@ const pantheonSync = (() => {
         npmCommand
     ) => {
         console.log('Building assets located in theme ' + themeDirectory);
-
-        console.log('ls root');
-        child_process.execSync('ls -hal');
-
         child_process.execSync('cd ' + themeDirectory);
-
-        console.log('ls theme');
-        child_process.execSync('ls -hal');
-        
-        console.log('Now in directory : ');
-        child_process.execSync('pwd');
         console.log('Composer install.');
-        child_process.execSync('cat composer.lock');
         child_process.execSync('sudo composer install');
         console.log('npm install.');
         child_process.execSync('cat package-lock.json');
@@ -52,7 +41,6 @@ const pantheonSync = (() => {
         console.log('Running NPM ' + npmCommand);
         child_process.execSync('npm run ' + npmCommand);
         console.log("\n ✅ Assets built.");
-
     };
 
     const setupRsync = () => {
