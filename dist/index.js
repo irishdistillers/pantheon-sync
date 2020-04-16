@@ -9662,7 +9662,7 @@ const pantheonSync = (() => {
     ) => {
 
         console.log('Building assets located in theme ' + themeDirectory);
-        child_process.execSync('cd $GITHUB_WORKSPACE/' + themeDirectory);
+        child_process.execSync('cd ' + themeDirectory);
         console.log('Now in directory : ');
         child_process.execSync('pwd');
         console.log('Composer install.');
