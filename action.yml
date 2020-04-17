@@ -1,5 +1,5 @@
 name: "Pantheon Rsync"
-description: "This GitHub Action builds your assets"
+description: "This GitHub Action rsyncs your assets"
 author: "irishdistillers"
 inputs:
   THEME_DIRECTORY:

@@ -36,6 +36,8 @@ const pantheonSync = (() => {
     async function rsyncAssets(themeDirectory, pantheonRepoName, pullRequest) {
         try {
 
+            console.log('reponame is : ' + pantheonRepoName);
+            console.log('branchname is : ' + pullRequest.head.ref);
             console.log('Sending assets via Rsync');
             await exec.exec('terminus', ['rsync', '$GITHUB_WORKSPACE/' + themeDirectory, pantheonRepoName + '.' + pullRequest.head.ref + ':' + themeDirectory]);
             console.log("\n ✅ Assets synced.");
