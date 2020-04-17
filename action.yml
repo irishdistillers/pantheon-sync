@@ -2,8 +2,11 @@ name: "Pantheon Rsync"
 description: "This GitHub Action rsyncs your assets"
 author: "irishdistillers"
 inputs:
-  THEME_DIRECTORY:
-    description: "Directory where the them to sync is located."
+  LOCAL_THEME_DIRECTORY:
+    description: "Directory where the theme to sync is located."
+    required: true
+  REMOTE_THEME_DIRECTORY:
+    description: "Directory where the theme directory is to be copied to."
     required: true
   REMOTE_REPO_NAME:
     description: "Remote GIT Repo Name"

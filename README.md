@@ -26,7 +26,8 @@ This Github actions required that you:
   - name: Rsync assets to Pantheon
       uses: irishdistillers/pantheon-sync@master
       with:
-        THEME_DIRECTORY: 'wp-content/themes/global-theme'
+        LOCAL_THEME_DIRECTORY: 'wp-content/themes/global-theme'
+        REMOTE_THEME_DIRECTORY: 'wp-content/themes'
         REMOTE_REPO_NAME: ${{ secrets.PANTHEON_SITE_ID }}
 ```
 

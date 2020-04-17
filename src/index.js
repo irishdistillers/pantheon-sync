@@ -6,8 +6,8 @@ const github = require('@actions/github');
 const child_process = require('child_process');
 
 const {
-    THEME_DIRECTORY,
-    REMOTE_REPO_NAME,
+    LOCAL_THEME_DIRECTORY,
+    REMOTE_REMOTE_REPO_NAME,
     GITHUB_WORKSPACE,
     HOME
 } = process.env;
@@ -16,12 +16,13 @@ console.log('GITHUB_WORKSPACE', GITHUB_WORKSPACE);
 const pantheonSync = (() => {
 
     const init = ({
-        themeDirectory,
+        localThemeDirectory,
+        remoteThemeDirectory,
         pantheonRepoName,
         pullRequest
     }) => {
         setupRsync();
-        rsyncAssets(themeDirectory, pantheonRepoName, pullRequest);
+        rsyncAssets(localThemeDirectory, remoteThemeDirectory, pantheonRepoName, pullRequest);
     };
 
     const setupRsync = () => {
@@ -33,13 +34,13 @@ const pantheonSync = (() => {
 
     };
 
-    async function rsyncAssets(themeDirectory, pantheonRepoName, pullRequest) {
+    async function rsyncAssets(localThemeDirectory, remoteThemeDirectory, pantheonRepoName, pullRequest) {
         try {
 
             console.log('reponame is : ' + pantheonRepoName);
             console.log('branchname is : ' + pullRequest.head.ref);
             console.log('Sending assets via Rsync');
-            await exec.exec('terminus', ['rsync', '$GITHUB_WORKSPACE/' + themeDirectory, pantheonRepoName + '.' + pullRequest.head.ref + ':' + themeDirectory]);
+            await exec.exec('terminus', ['rsync', '$GITHUB_WORKSPACE/' + localThemeDirectory, pantheonRepoName + '.' + pullRequest.head.ref + ':' + remoteThemeDirectory, '-y' ]);
             console.log("\n ✅ Assets synced.");
 
         } catch (error) {
@@ -56,7 +57,8 @@ const run = () => {
     console.log('Passing parameters to init.');
     console.log('Core theme is ' + core.getInput('THEME_DIRECTORY'));
     pantheonSync.init({
-        themeDirectory: core.getInput('THEME_DIRECTORY'),
+        localThemeDirectory: core.getInput('LOCAL_THEME_DIRECTORY'),
+        remoteThemeDirectory: core.getInput('REMOTE_THEME_DIRECTORY'),
         pantheonRepoName: core.getInput('REMOTE_REPO_NAME'),
         pullRequest: github.context.payload.pull_request,
     });
